@@ -1,3 +1,23 @@
-<h1>
+<!-- <h1>
   {{title}}
-</h1>
+</h1> -->
+<input(keypress)="_keyPress($event)">
+<div fxLayout='column' class="zero">
+
+  <div fxFlex="33"                          class="one" >
+  </div>
+  <div fxFlex="33%" [fxLayout]="direction" class="two">
+
+    <div fxFlex="22%"    class="two_one">ghg</div>
+    <div fxFlex="205px"  class="two_two">jh</div>
+    <div fxFlex="30"     class="two_three">hb</div>
+
+  </div>
+  <div fxFlex class="three"></div>
+
+</div>
+<md-input-container align="end">
+  <input mdInput placeholder="amount">
+  <span md-prefix>$&nbsp;</span>
+  <span md-suffix>.00</span>
+</md-input-container>
