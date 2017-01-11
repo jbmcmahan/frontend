@@ -1,7 +1,7 @@
 <!-- <h1>
   {{title}}
 </h1> -->
-<input(keypress)="_keyPress($event)">
+<!-- <input(keypress)="_keyPress($event)">
 <div fxLayout='column' class="zero">
 
   <div fxFlex="33"                          class="one" >
@@ -20,4 +20,19 @@
   <input mdInput placeholder="amount">
   <span md-prefix>$&nbsp;</span>
   <span md-suffix>.00</span>
-</md-input-container>
+</md-input-container> -->
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Auth0 - Angular 2</a>
+      <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+      <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  <!-- <app-root></app-root> -->
+</main>
