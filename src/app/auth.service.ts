@@ -6,16 +6,42 @@ import { tokenNotExpired } from 'angular2-jwt';
 // Avoid name not found warnings
 declare var Auth0Lock: any;
 
+var options = {
+  languageDictionary: {
+    emailInputPlaceholder: "something@youremail.com",
+    title: "clone"
+  },
+  theme: {
+    // logo: 'https://example.com/logo.png',
+    primaryColor: '#31324F'
+  },
+  auth: {
+    params: {
+      scope: 'openid email nickname'
+    },
+  }
+};
+
+
 @Injectable()
 export class Auth {
   // Configure Auth0
-  lock = new Auth0Lock('06UagsgpXm5jye0vYtpMaS5Lci97KRRi', 'jbmcmahan.auth0.com', {});
+  lock = new Auth0Lock('06UagsgpXm5jye0vYtpMaS5Lci97KRRi', 'jbmcmahan.auth0.com', options);
 
   constructor() {
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
+
+      this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
+        if (error) {
+          console.log(error);
+        }
+
+        localStorage.setItem('profile', JSON.stringify(profile));
+      });
     });
+
   }
 
   public login() {
@@ -32,5 +58,6 @@ export class Auth {
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
   }
 }
